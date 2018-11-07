@@ -1,0 +1,37 @@
+<div  class="text-center" *ngIf="!isLoaded">Loading...</div>
+<div *ngIf="isLoaded">
+  <div class="title-block">
+    <h3 class="title">
+      <a [routerLink]="['/system/history']"><i class="fa fa-arrow-left"></i></a>
+      Страница записи № {{events.id}}
+      <span class="sparkline bar"></span>
+    </h3>
+  </div>
+  <section class="section">
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-3">
+        <div class="card" [ngClass]="{
+        'card-success': events.type === 'income',
+        'card-danger': events.type === 'outcome'
+        }">
+          <div class="card-header">
+            <div class="header-block">
+              <p class="title">
+                <span *ngIf="events.type === 'income'">Доход</span>
+                <span *ngIf="events.type === 'outcome'">Расход</span>
+              </p>
+            </div>
+          </div>
+          <div class="card-block">
+            <ul>
+              <li>Сумма: <strong>{{events.amount | number: '1.2'}} P</strong></li>
+              <li>Категория: <strong>{{category.name}}</strong></li>
+              <li>Категория: <strong>{{events.description}}</strong></li>
+            </ul>
+          </div>
+          <div class="card-footer">{{events.date}}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
